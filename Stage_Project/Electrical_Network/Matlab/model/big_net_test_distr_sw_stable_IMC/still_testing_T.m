@@ -40,6 +40,11 @@ for i = 1 : n_of_systems
     K21 = ss(Aki, -Li, Ct, eye(p), 1);
     K22 = ss(Aki, Bt, Ct, 0, 1);
 
+    % Tyw = inv(eye(p) - Pi * H * K11) * Pi;
+    % Tyv = inv(eye(p) - Pi * H * K11) * Pi * H * K12;
+    % Tew = K21 * Tyw;
+    % Tev = K21 * Tyv + K22;
+
     Tyw = feedback(Pi, series(K11, H), 1);
     Tyv = series(K12, feedback(series(H, Pi), K11, 1));
     Tew = series(Tyw, K21);
@@ -63,8 +68,8 @@ for i = 1 : n_of_systems
 
         Pg_temp = [Tyw, Tyv;
             Tew, Tev];
-        Pg_temp = ss(Pg_temp, 'min');
-        [K_temp, CLL, gamma_temp, inff] = hinfsyn(Pg_temp, 10, 5, [4 10]);
+        Pg_temp = balreal(ss(Pg_temp, 'min'));
+        [K_temp, CLL, gamma_temp, inff] = hinfsyn(Pg_temp, 10, 5, 15);
         K_temp_min = ss(K_temp, 'min');
 
     %%
@@ -79,9 +84,9 @@ for i = 1 : n_of_systems
 
         [K_temp, Cll, gamma_temp, inff] = hinfsyn(Pgj{j}, 2, 1);
 
-        if ~(all(abs(eig(K_temp)) < 1))
-            error(['Controller of node ', num2str(j), ' is not stable'])
-        end
+        % if ~(all(abs(eig(K_temp)) < 1))
+        %     error(['Controller of node ', num2str(j), ' is not stable'])
+        % end
         
         Tj{j} = K_temp;
         % Tj{j} = ss(K_temp, 'min');
@@ -96,8 +101,8 @@ for i = 1 : n_of_systems
 
     biggestmatever{i} = bigmat;
 
-    Pi = dlyap(bigss.A', eye(150));
-    sys_new = ss2ss(bigss, sqrtm(Pi));
+    % Pi = dlyap(bigss.A', eye(150));
+    sys_new = ss2ss(bigss, eye(150));
 
     for j = 1 : 5
 

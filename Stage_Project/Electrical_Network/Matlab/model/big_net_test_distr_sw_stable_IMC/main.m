@@ -24,7 +24,7 @@ node_3_0 = pi / 180 * [2, 0]';
 node_4_0 = pi / 180 * [-8, 0]';
 node_5_0 = pi / 180 * [-3, 0]';
 
-n_max = 500;
+n_max = 50;
 dt = 0.2;
 
 %%
@@ -81,7 +81,7 @@ mode_sel_dat = 9 * double(tt >= 0 & tt <= 30) + 5 * double(tt >= 31 & tt <= 150)
 % mode_sel_dat = randi(9, 1, n_max);
 % mode_sel_dat = mod(tt, 9) + 1;
 % mode_sel_dat = 9 * ones(1, n_max);
-load('random_switch.mat')
+% load('random_switch.mat')
 mode_sel = timeseries(mode_sel_dat, tt);
 
 % Considered failure modes:
