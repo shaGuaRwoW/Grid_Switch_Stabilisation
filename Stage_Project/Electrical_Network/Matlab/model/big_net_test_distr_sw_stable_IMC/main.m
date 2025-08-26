@@ -24,7 +24,7 @@ node_3_0 = pi / 180 * [2, 0]';
 node_4_0 = pi / 180 * [-8, 0]';
 node_5_0 = pi / 180 * [-3, 0]';
 
-n_max = 50;
+n_max = 500;
 dt = 0.2;
 
 %%
@@ -37,17 +37,17 @@ load('T_params.mat');
 % load('distributed_sw_stable_ctrl_sparse_slow.mat');
 load('distributed_sw_stable_ctrl_no_sparse_fast.mat');
 % load('T_LMI.mat');
-load('T_hinf.mat');
+% load('T_hinf.mat');
 
 
 n_T_local = 30;
 n_states = 5 * n_T_local;
 n_of_systems = 9;
 
-% T_A = zeros(n_states, n_states, n_of_systems);
-% T_B = zeros(n_states, 10, n_of_systems);
-% T_C = zeros(5, n_states, n_of_systems);
-% T_D = zeros(5, 10, n_of_systems);
+T_A = zeros(n_states, n_states, n_of_systems);
+T_B = zeros(n_states, 10, n_of_systems);
+T_C = zeros(5, n_states, n_of_systems);
+T_D = zeros(5, 10, n_of_systems);
 
 ss_nom = ss(A_matrices(:, :, 9), B, C, 0, 1);
 
@@ -70,18 +70,22 @@ w3 = 0 * u3;
 w4 = 0 * u4;
 w5 = 0 * u5;
 
-% w3 = 0.5 * randn(n_max, 1);
+w3 = 0.01 * randn(n_max, 1);
+% w3 = 0.05 * sin(2 * pi / 20 * tt);
+w3 = timeseries(w3, tt);
+
+w5 = 0.01 * randn(n_max, 1);
 % w3 = sin(2 * pi / 1.8 * tt);
-% w3 = timeseries(w3, tt);
+w5 = timeseries(w5, tt);
 
 %% Network configuration signals definition
 
-mode_sel_dat = 9 * double(tt >= 0 & tt <= 30) + 5 * double(tt >= 31 & tt <= 150) ...
-    + 9 * double(tt >= 151 & tt <= 350) + 1 * double(tt >= 351 & tt <= n_max);
+% mode_sel_dat = 9 * double(tt >= 0 & tt <= 30) + 5 * double(tt >= 31 & tt <= 150) ...
+    % + 9 * double(tt >= 151 & tt <= 350) + 1 * double(tt >= 351 & tt <= n_max);
 % mode_sel_dat = randi(9, 1, n_max);
 % mode_sel_dat = mod(tt, 9) + 1;
 % mode_sel_dat = 9 * ones(1, n_max);
-% load('random_switch.mat')
+load('random_switch.mat')
 mode_sel = timeseries(mode_sel_dat, tt);
 
 % Considered failure modes:

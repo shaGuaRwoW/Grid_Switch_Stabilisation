@@ -81,11 +81,11 @@ for k = 1 : Nmax
         % Common Lyapunov function for state feedback and state estimator
         constr = [constr; 
 
-            [P, (A_matrices(:, :, i) * P + B * U{i})';
-            A_matrices(:, :, i) * P + B * U{i}, P] >= 0; 
+            [P, 1.4 * (A_matrices(:, :, i) * P + B * U{i})';
+            1.4 * A_matrices(:, :, i) * P + 1.4 * B * U{i}, P] >= 0; 
             
-            [Q, (Q * A_matrices(:, :, i) + Y{i} * C)';
-            Q * A_matrices(:, :, i) + Y{i} * C, Q] >= 0
+            [Q, 2 * (Q * A_matrices(:, :, i) + Y{i} * C)';
+            2 * Q * A_matrices(:, :, i) + 2 * Y{i} * C, Q] >= 0
 
         ];
     
