@@ -221,3 +221,34 @@ grid
 % figure
 % plot(tt * dt, switch_signal.data)
 % grid
+
+%%
+
+figure
+hold on
+
+plot(u3.time * dt, reshape(u3.data, 1, []), 'LineWidth', 1.5)
+plot(u5.time * dt, reshape(u5.data, 1, []), 'LineWidth', 1.5)
+grid
+
+legend('w3', 'w5')
+
+% ylabel("Electrical angle (degrees)")
+ylabel("Disturbance magnitude")
+xlabel("Time (seconds)")
+set(gca, 'FontSize', 18)
+%%
+
+figure
+hold on
+grid
+plot(sim_out.tout * dt, delta_1 * 180 / pi, 'LineWidth', 1.5)
+plot(sim_out.tout * dt, delta_2 * 180 / pi, 'LineWidth', 1.5)
+plot(sim_out.tout * dt, delta_3 * 180 / pi, 'LineWidth', 1.5)
+plot(sim_out.tout * dt, delta_4 * 180 / pi, 'LineWidth', 1.5)
+plot(sim_out.tout * dt, delta_5 * 180 / pi, 'LineWidth', 1.5)
+legend('Delta 1', 'Delta 2', 'Delta 3', 'Delta 4', 'Delta 5')
+
+ylabel("Electrical angle (degrees)")
+xlabel("Time (seconds)")
+set(gca, 'FontSize', 18)

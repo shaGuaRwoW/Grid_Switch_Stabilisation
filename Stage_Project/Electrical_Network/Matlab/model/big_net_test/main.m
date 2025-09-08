@@ -24,7 +24,7 @@ node_3_0 = pi / 180 * [2, 0]';
 node_4_0 = pi / 180 * [-8, 0]';
 node_5_0 = pi / 180 * [-3, 0]';
 
-n_max = 500;
+n_max = 200;
 dt = 0.2;
 
 %%
@@ -44,7 +44,7 @@ tt = 1 : n_max;
 u1 = double(tt >= 120);
 u1 = timeseries(u1, tt);
 
-u5 = 0.1 * u1;
+u5 = 0 * u1;
 u2 = 0 * u1;
 u3 = 0 * u1;
 u4 = 0 * u1;
@@ -62,13 +62,13 @@ w5 = 0 * u5;
 
 %% Network configuration signals definition
 
-mode_sel_dat = 9 * double(tt >= 0 & tt <= 30) + 5 * double(tt >= 31 & tt <= 150) ...
-    + 9 * double(tt >= 151 & tt <= 350) + 1 * double(tt >= 351 & tt <= n_max);
+% mode_sel_dat = 9 * double(tt >= 0 & tt <= 30) + 5 * double(tt >= 31 & tt <= 150) ...
+    % + 9 * double(tt >= 151 & tt <= 350) + 1 * double(tt >= 351 & tt <= n_max);
 % mode_sel_dat = 9 * double(tt >= 0 & tt <= 30) + 1 * double(tt >= 31 & tt <= 99) + 5 * double(tt >= 100 & tt <= n_max);
 % mode_sel_dat = randi(9, 1, n_max);
 % mode_sel_dat = mod(tt, 9) + 1;
 % mode_sel_dat = 1 * ones(1, n_max);
-% load('random_sw.mat')
+load('random_sw.mat')
 mode_sel = timeseries(mode_sel_dat, tt);
 
 % Considered failure modes:
@@ -120,7 +120,7 @@ figure
 subplot(2, 3, 1)
 hold on
 plot(sim_out.tout * dt, delta_1, 'LineWidth', 1.5)
-% plot(sim_out.tout * dt, ss_delta_1, 'LineStyle', '-', 'LineWidth', 1)
+plot(sim_out.tout * dt, ss_delta_1, 'LineStyle', '-', 'LineWidth', 1)
 legend('K-NRF switching - Delta 1', 'Test SS - Delta 1')
 set(gca, 'FontSize', 15)
 grid
@@ -128,7 +128,7 @@ grid
 subplot(2, 3, 2)
 hold on
 plot(sim_out.tout * dt, delta_2, 'LineWidth', 1.5)
-% plot(sim_out.tout * dt, ss_delta_2, 'LineStyle', '-', 'LineWidth', 1)
+plot(sim_out.tout * dt, ss_delta_2, 'LineStyle', '-', 'LineWidth', 1)
 legend('K-NRF switching - Delta 2', 'Test SS - Delta 2')
 set(gca, 'FontSize', 15)
 grid
@@ -136,7 +136,7 @@ grid
 subplot(2, 3, 3)
 hold on
 plot(sim_out.tout * dt, delta_3, 'LineWidth', 1.5)
-% plot(sim_out.tout * dt, ss_delta_3, 'LineStyle', '-', 'LineWidth', 1)
+plot(sim_out.tout * dt, ss_delta_3, 'LineStyle', '-', 'LineWidth', 1)
 legend('K-NRF switching - Delta 3', 'Test SS - Delta 3')
 set(gca, 'FontSize', 15)
 grid
@@ -144,7 +144,7 @@ grid
 subplot(2, 3, 4)
 hold on
 plot(sim_out.tout * dt, delta_4, 'LineWidth', 1.5)
-% plot(sim_out.tout * dt, ss_delta_4, 'LineStyle', '-', 'LineWidth', 1)
+plot(sim_out.tout * dt, ss_delta_4, 'LineStyle', '-', 'LineWidth', 1)
 legend('K-NRF switching - Delta 4', 'Test SS - Delta 4')
 set(gca, 'FontSize', 15)
 grid
@@ -152,7 +152,7 @@ grid
 subplot(2, 3, 5)
 hold on
 plot(sim_out.tout * dt, delta_5, 'LineWidth', 1.5)
-% plot(sim_out.tout * dt, ss_delta_5, 'LineStyle', '-', 'LineWidth', 1)
+plot(sim_out.tout * dt, ss_delta_5, 'LineStyle', '-', 'LineWidth', 1)
 legend('K-NRF switching - Delta 5', 'Test SS - Delta 5')
 set(gca, 'FontSize', 15)
 grid
@@ -163,7 +163,7 @@ figure
 subplot(2, 3, 1)
 hold on
 plot(sim_out.tout * dt, omega_1, 'LineWidth', 1.5)
-% plot(sim_out.tout * dt, ss_omega_1, 'LineStyle', '-', 'LineWidth', 1)
+plot(sim_out.tout * dt, ss_omega_1, 'LineStyle', '-', 'LineWidth', 1)
 legend('K-NRF switching - Omega 1', 'Test SS - Omega 1')
 set(gca, 'FontSize', 15)
 grid
@@ -171,7 +171,7 @@ grid
 subplot(2, 3, 2)
 hold on
 plot(sim_out.tout * dt, omega_2, 'LineWidth', 1.5)
-% plot(sim_out.tout * dt, ss_omega_2, 'LineStyle', '-', 'LineWidth', 1)
+plot(sim_out.tout * dt, ss_omega_2, 'LineStyle', '-', 'LineWidth', 1)
 legend('K-NRF switching - Omega 2', 'Test SS - Omega 2')
 set(gca, 'FontSize', 15)
 grid
@@ -179,7 +179,7 @@ grid
 subplot(2, 3, 3)
 hold on
 plot(sim_out.tout * dt, omega_3, 'LineWidth', 1.5)
-% plot(sim_out.tout * dt, ss_omega_3, 'LineStyle', '-', 'LineWidth', 1)
+plot(sim_out.tout * dt, ss_omega_3, 'LineStyle', '-', 'LineWidth', 1)
 legend('K-NRF switching - Omega 3', 'Test SS - Omega 3')
 set(gca, 'FontSize', 15)
 grid
@@ -187,7 +187,7 @@ grid
 subplot(2, 3, 4)
 hold on
 plot(sim_out.tout * dt, omega_4, 'LineWidth', 1.5)
-% plot(sim_out.tout * dt, ss_omega_4, 'LineStyle', '-', 'LineWidth', 1)
+plot(sim_out.tout * dt, ss_omega_4, 'LineStyle', '-', 'LineWidth', 1)
 legend('K-NRF switching - Omega 4', 'Test SS - Omega 4')
 set(gca, 'FontSize', 15)
 grid
@@ -195,7 +195,7 @@ grid
 subplot(2, 3, 5)
 hold on
 plot(sim_out.tout * dt, omega_5, 'LineWidth', 1.5)
-% plot(sim_out.tout * dt, ss_omega_5, 'LineStyle', '-', 'LineWidth', 1)
+plot(sim_out.tout * dt, ss_omega_5, 'LineStyle', '-', 'LineWidth', 1)
 legend('K-NRF switching - Omega 5', 'Test SS - Omega 5')
 set(gca, 'FontSize', 15)
 grid
@@ -209,3 +209,20 @@ plot(sim_out.resulting_sw, 'LineWidth', 1.5)
 title('')
 grid
 set(gca, 'FontSize', 20)
+
+
+%%
+
+figure
+hold on
+grid
+plot(sim_out.tout * dt, delta_1 * 180 / pi, 'LineWidth', 1.5)
+plot(sim_out.tout * dt, delta_2 * 180 / pi, 'LineWidth', 1.5)
+plot(sim_out.tout * dt, delta_3 * 180 / pi, 'LineWidth', 1.5)
+plot(sim_out.tout * dt, delta_4 * 180 / pi, 'LineWidth', 1.5)
+plot(sim_out.tout * dt, delta_5 * 180 / pi, 'LineWidth', 1.5)
+legend('Delta 1', 'Delta 2', 'Delta 3', 'Delta 4', 'Delta 5')
+
+ylabel("Electrical angle (degrees)")
+xlabel("Time (seconds)")
+set(gca, 'FontSize', 18)

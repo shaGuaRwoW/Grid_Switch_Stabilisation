@@ -62,6 +62,12 @@ L = sdpvar(repmat(n, 1, n_of_systems), repmat(p, 1, n_of_systems));
 U = sdpvar(repmat(m, 1, n_of_systems), repmat(n, 1, n_of_systems));
 Y = sdpvar(repmat(n, 1, n_of_systems), repmat(p, 1, n_of_systems));
 
+% gamma1 = 1;
+% gamma2 = 1;
+
+gamma1 = 1.4;
+gamma2 = 2;
+
 %%
 
 Nmax = 10;
@@ -81,11 +87,11 @@ for k = 1 : Nmax
         % Common Lyapunov function for state feedback and state estimator
         constr = [constr; 
 
-            [P, 1.4 * (A_matrices(:, :, i) * P + B * U{i})';
-            1.4 * A_matrices(:, :, i) * P + 1.4 * B * U{i}, P] >= 0; 
+            [P, gamma1 * (A_matrices(:, :, i) * P + B * U{i})';
+            gamma1 * A_matrices(:, :, i) * P + gamma1 * B * U{i}, P] >= 0; 
             
-            [Q, 2 * (Q * A_matrices(:, :, i) + Y{i} * C)';
-            2 * Q * A_matrices(:, :, i) + 2 * Y{i} * C, Q] >= 0
+            [Q, gamma2 * (Q * A_matrices(:, :, i) + Y{i} * C)';
+            gamma2 * Q * A_matrices(:, :, i) + gamma2 * Y{i} * C, Q] >= 0
 
         ];
     
