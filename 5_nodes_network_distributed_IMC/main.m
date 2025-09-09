@@ -81,7 +81,7 @@ mode_sel = timeseries(mode_sel_dat, tt);
 %% Simulate
 
 % sim_out = sim("net_model_5_nodes.slx");
-sim_out = sim("net_model_5_nodes_distributed_controllers.slx");
+sim_out = sim("net_model_5_nodes_distributed_controllers_IMC.slx");
 
 %% Unpack output
 
