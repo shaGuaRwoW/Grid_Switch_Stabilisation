@@ -70,11 +70,11 @@ w3 = 0 * u3;
 w4 = 0 * u4;
 w5 = 0 * u5;
 
-w3 = 0.01 * randn(n_max, 1);
+w3 = 0.0 * randn(n_max, 1);
 % w3 = 0.05 * sin(2 * pi / 20 * tt);
 w3 = timeseries(w3, tt);
 
-w5 = 0.01 * randn(n_max, 1);
+w5 = 0.0 * randn(n_max, 1);
 % w3 = sin(2 * pi / 1.8 * tt);
 w5 = timeseries(w5, tt);
 
@@ -236,7 +236,7 @@ legend('w3', 'w5')
 % ylabel("Electrical angle (degrees)")
 ylabel("Disturbance magnitude")
 xlabel("Time (seconds)")
-set(gca, 'FontSize', 18)
+set(gca, 'FontSize', 25)
 %%
 
 figure
@@ -251,4 +251,4 @@ legend('Delta 1', 'Delta 2', 'Delta 3', 'Delta 4', 'Delta 5')
 
 ylabel("Electrical angle (degrees)")
 xlabel("Time (seconds)")
-set(gca, 'FontSize', 18)
+set(gca, 'FontSize', 25)

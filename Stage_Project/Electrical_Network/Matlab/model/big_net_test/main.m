@@ -225,4 +225,4 @@ legend('Delta 1', 'Delta 2', 'Delta 3', 'Delta 4', 'Delta 5')
 
 ylabel("Electrical angle (degrees)")
 xlabel("Time (seconds)")
-set(gca, 'FontSize', 18)
+set(gca, 'FontSize', 25)
