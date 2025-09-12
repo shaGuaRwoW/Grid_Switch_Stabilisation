@@ -49,11 +49,11 @@ w3 = 0 * u3;
 w4 = 0 * u4;
 w5 = 0 * u5;
 
-w3 = 0.0 * randn(n_max, 1);
+w3 = 0.01 * randn(n_max, 1);
 % w3 = 0.05 * sin(2 * pi / 20 * tt);
 w3 = timeseries(w3, tt);
 
-w5 = 0.0 * randn(n_max, 1);
+w5 = 0.01 * randn(n_max, 1);
 % w3 = sin(2 * pi / 1.8 * tt);
 w5 = timeseries(w5, tt);
 
@@ -210,12 +210,13 @@ plot(u3.time * dt, reshape(u3.data, 1, []), 'LineWidth', 1.5)
 plot(u5.time * dt, reshape(u5.data, 1, []), 'LineWidth', 1.5)
 grid
 
-legend('w3', 'w5')
+legend('$w_{1}$', '$w_{2}$', 'Interpreter','latex','FontSize',35)
+% legend('w3', 'w5')
 
 % ylabel("Electrical angle (degrees)")
 ylabel("Disturbance magnitude")
 xlabel("Time (seconds)")
-set(gca, 'FontSize', 25)
+set(gca, 'FontSize', 35)
 %%
 
 figure
@@ -226,8 +227,9 @@ plot(sim_out.tout * dt, delta_2 * 180 / pi, 'LineWidth', 1.5)
 plot(sim_out.tout * dt, delta_3 * 180 / pi, 'LineWidth', 1.5)
 plot(sim_out.tout * dt, delta_4 * 180 / pi, 'LineWidth', 1.5)
 plot(sim_out.tout * dt, delta_5 * 180 / pi, 'LineWidth', 1.5)
-legend('Delta 1', 'Delta 2', 'Delta 3', 'Delta 4', 'Delta 5')
+legend('$\delta_{1}$', '$\delta_{2}$', '$\delta_{3}$', '$\delta_{4}$', '$\delta_{5}$','Interpreter','latex','FontSize',35)
+% legend('Delta 1', 'Delta 2', 'Delta 3', 'Delta 4', 'Delta 5')
 
 ylabel("Electrical angle (degrees)")
 xlabel("Time (seconds)")
-set(gca, 'FontSize', 25)
+set(gca, 'FontSize', 35)

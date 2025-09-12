@@ -62,11 +62,11 @@ L = sdpvar(repmat(n, 1, n_of_systems), repmat(p, 1, n_of_systems));
 U = sdpvar(repmat(m, 1, n_of_systems), repmat(n, 1, n_of_systems));
 Y = sdpvar(repmat(n, 1, n_of_systems), repmat(p, 1, n_of_systems));
 
-gamma1 = 1;
-gamma2 = 1;
+% gamma1 = 1;
+% gamma2 = 1;
 
-% gamma1 = 1.4;
-% gamma2 = 2;
+gamma1 = 1.4;
+gamma2 = 2;
 
 %%
 
